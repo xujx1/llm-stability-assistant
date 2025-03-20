@@ -9,7 +9,10 @@
     <url>http://maven.apache.org</url>
 
     <modules>
-        <module>llm-stability-link</module>
+        <module>stability-sequence-diagram</module>
+        <module>stability-unit-testing</module>
+        <module>stability-assistant-web</module>
+        <module>stability-assistant-base</module>
     </modules>
 
     <properties>
@@ -17,6 +20,8 @@
         <spring-ai-alibaba.version>1.0.0-M5.1</spring-ai-alibaba.version>
         <spring-boot.version>3.3.3</spring-boot.version>
         <lombok.version>1.18.36</lombok.version>
+        <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
+        <project.version>1.0-SNAPSHOT</project.version>
     </properties>
 
 
@@ -63,17 +68,65 @@
                 <version>6.2</version>
             </dependency>
             <dependency>
-                <groupId>net.sourceforge.plantuml</groupId>
-                <artifactId>plantuml</artifactId>
-                <version>1.2023.1</version> <!-- 请检查最新版本 -->
+                <groupId>org.example</groupId>
+                <artifactId>stability-assistant-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>stability-sequence-diagram</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>my-private-repo</id>
-            <url>http://myrepository.com/repo/</url>
-        </repository>
-    </repositories>
+    <build>
+        <defaultGoal>spring-boot:run</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                    <compilerArgs>
+                        <compilerArg>-parameters</compilerArg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
