@@ -7,13 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.stability.annotations.AnnotatedScanner;
 import com.stability.annotations.Tool;
 import com.stability.constant.Constant;
-import com.stability.sequence.diagram.annotations.AnnotatedScanner;
 import jakarta.annotation.Resource;
 import lombok.Getter;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration(value = "toolScanConfig")

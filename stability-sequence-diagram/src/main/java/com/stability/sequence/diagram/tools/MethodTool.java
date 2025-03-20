@@ -17,7 +17,7 @@ public class MethodTool {
     public record MethodCallRequest(String className, String methodName) {}
 
     @Bean
-    @Description("根据类名+方法名判断方法是否存在")
+    @Description("判断类名和方法是否存在")
     public Function<MethodCallRequest, Boolean> methodExist() {
         return (request) -> {
             try {

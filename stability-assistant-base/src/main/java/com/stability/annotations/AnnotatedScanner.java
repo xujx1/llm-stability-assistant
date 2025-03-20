@@ -1,4 +1,4 @@
-package com.stability.sequence.diagram.annotations;
+package com.stability.annotations;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;

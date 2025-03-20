@@ -9,4 +9,11 @@
     <artifactId>stability-unit-testing</artifactId>
     <name>Archetype - llm-stability-unit-testing</name>
     <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>stability-assistant-base</artifactId>
+        </dependency>
+    </dependencies>
 </project>

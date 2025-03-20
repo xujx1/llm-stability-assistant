@@ -1,6 +1,6 @@
 package com.stability.client;
 
-import com.stability.agent.StabilityLinkAgent;
+import com.stability.sequence.diagram.agent.SequenceDiagramAgent;
 import jakarta.annotation.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +12,11 @@ import reactor.core.publisher.Flux;
 public class AssistantController {
 
     @Resource
-    private StabilityLinkAgent stabilityLinkAgent;
+    private SequenceDiagramAgent sequenceDiagramAgent;
 
     @RequestMapping(path = "/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> chat(String chatId, String userMessage) {
-        return stabilityLinkAgent.chat(chatId, userMessage);
+        return sequenceDiagramAgent.chat(chatId, userMessage);
     }
 
 }

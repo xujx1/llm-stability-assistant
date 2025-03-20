@@ -1,11 +1,11 @@
-package com.stability.sequence.diagram.config;
+package com.stability.config;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import com.stability.constant.Constant;
-import com.stability.sequence.diagram.annotations.AnnotatedScanner;
+import com.stability.annotations.AnnotatedScanner;
 import jakarta.annotation.Resource;
 import lombok.Getter;
 import org.springframework.beans.factory.InitializingBean;

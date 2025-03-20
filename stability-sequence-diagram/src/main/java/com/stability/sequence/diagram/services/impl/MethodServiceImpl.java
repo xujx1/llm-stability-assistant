@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.stability.sequence.diagram.config.MethodScanConfig;
+import com.stability.config.MethodScanConfig;
 import com.stability.sequence.diagram.resp.MethodFieldResp;
 import com.stability.sequence.diagram.services.MethodService;
 import jakarta.annotation.Resource;
