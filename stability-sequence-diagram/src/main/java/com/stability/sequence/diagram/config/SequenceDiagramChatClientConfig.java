@@ -2,7 +2,6 @@ package com.stability.sequence.diagram.config;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
 
-import com.stability.config.ToolScanConfig;
 import com.stability.advisor.LoggingAdvisor;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.client.ChatClient;
@@ -17,21 +16,11 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration(value = "sequenceDiagramChatClientConfig")
 public class SequenceDiagramChatClientConfig {
 
     @Resource
-    private ToolScanConfig toolScanConfig;
-
-    @Bean
-    public ChatMemory chatMemory() {
-        return new InMemoryChatMemory();
-    }
-
-    @Bean
-    public VectorStore vectorStore(EmbeddingModel embeddingModel) {
-        return SimpleVectorStore.builder(embeddingModel).build();
-    }
+    private SequenceDiagramToolScanConfig sequenceDiagramToolScanConfig;
 
     @Bean
     public ChatClient sequenceDiagramChatClient(ChatClient.Builder modelBuilder, VectorStore vectorStore, ChatMemory chatMemory) {
@@ -74,7 +63,7 @@ public class SequenceDiagramChatClientConfig {
                 new QuestionAnswerAdvisor(vectorStore,
                     SearchRequest.builder().topK(4).similarityThresholdAll().build()),
                 new LoggingAdvisor()).
-            defaultFunctions(toolScanConfig.getMethodNames().toArray(new String[] {})).
+            defaultFunctions(sequenceDiagramToolScanConfig.getMethodNames().toArray(new String[] {})).
             defaultOptions(DashScopeChatOptions.builder().withTopP(0.1).build()).build();
     }
 }
